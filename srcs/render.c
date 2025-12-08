@@ -7,6 +7,10 @@ void render_frame(t_mlx *m)
 
     cast_rays(m);
     render_3d(m);
+    draw_minimap(m);
+    draw_minimap_rays(m);
+    draw_minimap_player(m);
+
     mlx_put_image_to_window(m->mlx, m->win, m->img, 0, 0);
     mlx_destroy_image(m->mlx, m->img);
 }

@@ -8,8 +8,15 @@ int is_wall(t_mlx *m, float x, float y)
     if (map_x < 0 || map_x >= MAP_W || map_y < 0 || map_y >= MAP_H)
         return (1);
 
-    return (m->map[map_y][map_x] == 1);
+    int tile = m->map[map_y][map_x];
+
+    if (tile == 1)
+        return 1;
+    if (tile == 2)
+        return 1;
+    return 0;
 }
+
 
 int can_move(t_mlx *m, float nx, float ny)
 {
@@ -44,6 +51,10 @@ int handle_key(int keycode, t_mlx *mymlx)
     else if (keycode == KEY_RIGHT)
         mymlx->player.turn_dir = 1;
 
+    if (keycode == KEY_E)
+        toggle_door(mymlx);
+
+    
     if (keycode == KEY_ESC)
         exit(0);
 

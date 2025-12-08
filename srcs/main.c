@@ -18,6 +18,7 @@ int main(){
     load_texture(&mymlx, &mymlx.south, "./textures/south.xpm");
     load_texture(&mymlx, &mymlx.east, "./textures/east.xpm");
     load_texture(&mymlx, &mymlx.west, "./textures/west.xpm");
+    load_texture(&mymlx, &mymlx.door, "./textures/door.xpm");
     mymlx.win = mlx_new_window(mymlx.mlx, WIDTH, HEIGHT, "Hello Cub3D");
     mymlx.img = mlx_new_image(mymlx.mlx, WIDTH, HEIGHT);
     mymlx.addr = mlx_get_data_addr(mymlx.img, &mymlx.bits_per_pixel, &mymlx.line_lenght, &mymlx.endian);

@@ -13,6 +13,7 @@ SRC =  srcs/main.c  	 \
 	   srcs/cast_all.c	 \
 	   srcs/render.c     \
 	   srcs/texture_tool.c \
+	   srcs/minimap.c     \
 
 OBJ = $(SRC:.c=.o)
 

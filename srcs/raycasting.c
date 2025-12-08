@@ -40,6 +40,14 @@ double get_horizontal_hit(t_mlx *m, t_ray *ray)
         {
             ray->h_x = x;
             ray->h_y = y;
+            ray->h_door = 0;
+            return hypot(x - px, y - py);
+        }
+        if (m->map[my][mx] == 2)
+        {
+            ray->h_x = x;
+            ray->h_y = y;
+            ray->h_door = 1;
             return hypot(x - px, y - py);
         }
         x += x_step;
@@ -79,6 +87,14 @@ double get_vertical_hit(t_mlx *m, t_ray *ray)
         {
             ray->v_x = x;
             ray->v_y = y;
+            ray->v_door = 0;
+            return hypot(x - px, y - py);
+        }
+        if (m->map[my][mx] == 4)
+        {
+            ray->v_x = x;
+            ray->v_y = y;
+            ray->v_door = 1;
             return hypot(x - px, y - py);
         }
         x += x_step;

@@ -63,6 +63,22 @@ int handle_key(int keycode, t_mlx *mymlx)
     return 0;
 }
 
+int mouse_move(int x, int y, t_mlx *m)
+{
+    (void)y;
+
+    int center_x = WIDTH / 2;
+    int dx = x - center_x;
+
+    if (dx == 0)
+        return (0);
+
+    m->player.dir += dx * m->mouse_sensitivity;
+    m->player.dir = normalize_angle(m->player.dir);
+
+    return (0);
+}
+
 int close_window(t_mlx *mymlx)
 {
     mlx_destroy_window(mymlx->mlx, mymlx->win);

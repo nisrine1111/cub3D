@@ -24,8 +24,11 @@ int main(){
     load_sprites(&mymlx);
     mymlx.win = mlx_new_window(mymlx.mlx, WIDTH, HEIGHT, "Hello Cub3D");
     mymlx.frame_counter = 0;
+    mymlx.mouse_initialized = 0;
+    mymlx.mouse_sensitivity = 0.002;
     mlx_loop_hook(mymlx.mlx, render_frame, &mymlx);
     mlx_hook(mymlx.win, 2, 1L<<0, handle_key, &mymlx);
+    mlx_hook(mymlx.win, 6, 1L << 6, mouse_move, &mymlx);
     mlx_hook(mymlx.win, 17, 0, close_window, &mymlx);
     mlx_loop(mymlx.mlx);
     return(0);

@@ -19,9 +19,9 @@ int render_frame(t_mlx *m)
     draw_minimap(m);
     draw_minimap_rays(m);
     draw_minimap_player(m);
-
     mlx_put_image_to_window(m->mlx, m->win, m->img, 0, 0);
     mlx_destroy_image(m->mlx, m->img);
+    mlx_mouse_move(m->mlx, m->win, WIDTH/2, HEIGHT/2);
     return (0);
 }
 
@@ -45,7 +45,6 @@ void load_sprites(t_mlx *m)
 
     for (i = 0; i < m->sprite_count; i++)
     {
-        // load all frames for sprite i
         load_texture(m, &m->sprites[i].frames[0], "./textures/torch1.xpm");
         load_texture(m, &m->sprites[i].frames[1], "./textures/torch2.xpm");
         load_texture(m, &m->sprites[i].frames[2], "./textures/torch3.xpm");

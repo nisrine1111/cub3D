@@ -113,6 +113,9 @@ typedef struct s_mlx{
     t_sprite    *sprites;
     int         sprite_count;
     int         frame_counter;
+    int         last_mouse_x;
+    int         mouse_initialized;
+    double      mouse_sensitivity;
 }   t_mlx;
 
 
@@ -142,5 +145,6 @@ void    render_sprites(t_mlx *m);
 void    draw_sprite(t_mlx *m, t_sprite *sp);
 void    load_sprites(t_mlx *m);
 void    sort_sprites(t_mlx *m);
+int     mouse_move(int x, int y, t_mlx *m);
 
 #endif

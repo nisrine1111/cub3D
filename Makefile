@@ -14,6 +14,7 @@ SRC =  srcs/main.c  	 \
 	   srcs/render.c     \
 	   srcs/texture_tool.c \
 	   srcs/minimap.c     \
+	   srcs/render_sprites.c \
 
 OBJ = $(SRC:.c=.o)
 

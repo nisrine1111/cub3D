@@ -27,4 +27,3 @@ void update_player_movement(t_mlx *mymlx)
     if (can_move(mymlx, mymlx->player.x, next_y))
         mymlx->player.y = next_y;
 }
-

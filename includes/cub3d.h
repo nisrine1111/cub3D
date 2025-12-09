@@ -81,11 +81,15 @@ typedef struct s_tex
     int     height;
 }   t_tex;
 
-typedef struct s_sprites
+typedef struct s_sprite
 {
-    double  sprite;
-    
-}   t_sprites;
+    double  x;
+    double  y;
+    int     frame;
+    int     distance;
+    t_tex   frames[8];
+}   t_sprite;
+
 
 
 typedef struct s_mlx{
@@ -106,6 +110,9 @@ typedef struct s_mlx{
     t_tex       east;
     t_tex       west;
     t_tex       door;
+    t_sprite    *sprites;
+    int         sprite_count;
+    int         frame_counter;
 }   t_mlx;
 
 
@@ -122,7 +129,7 @@ void    cast_rays(t_mlx *mymlx);
 double  normalize_angle(double angle);
 double  get_horizontal_hit(t_mlx *m, t_ray *ray);
 double  get_vertical_hit(t_mlx *m, t_ray *ray);
-void    render_frame(t_mlx *m);
+int    render_frame(t_mlx *m);
 void    draw_textured_wall(t_mlx *m, int col, t_ray *ray);
 void    render_3d(t_mlx *m);
 void    load_texture(t_mlx *m, t_tex *tex, char *path);
@@ -131,6 +138,9 @@ void    draw_minimap(t_mlx *m);
 void    draw_minimap_player(t_mlx *m);
 void    draw_minimap_rays(t_mlx *m);
 void    toggle_door(t_mlx *m);
-
+void    render_sprites(t_mlx *m);
+void    draw_sprite(t_mlx *m, t_sprite *sp);
+void    load_sprites(t_mlx *m);
+void    sort_sprites(t_mlx *m);
 
 #endif

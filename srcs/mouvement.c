@@ -56,7 +56,7 @@ int handle_key(int keycode, t_mlx *mymlx)
 
     
     if (keycode == KEY_ESC)
-        exit(0);
+        close_window(mymlx);// kant exit(0) dert close_window(mymlx) 3la wed cleanup
 
     update_player_movement(mymlx);
     render_frame(mymlx);
@@ -82,5 +82,6 @@ int mouse_move(int x, int y, t_mlx *m)
 int close_window(t_mlx *mymlx)
 {
     mlx_destroy_window(mymlx->mlx, mymlx->win);
+    gc_free_all(); // cleanup
     exit(0);
 }

@@ -14,15 +14,42 @@ SRC =  srcs/main.c  	 \
 	   srcs/render.c     \
 	   srcs/texture_tool.c \
 	   srcs/minimap.c     \
-	   srcs/render_sprites.c \
+	   srcs/render_sprites.c
 
-OBJ = $(SRC:.c=.o)
+PARSING_SRC = srcs/parsing/colors.c \
+			  srcs/parsing/door.c \
+			  srcs/parsing/map.c \
+			  srcs/parsing/texture.c \
+			  srcs/parsing/helpers.c \
+			  srcs/parsing/parse_file.c
+
+GNL_SRC = helpers/get_next_line/get_next_line.c \
+		  helpers/get_next_line/get_next_line_utils.c
+
+GC_SRC = helpers/GarbageCollector/malloc.c \
+		 helpers/GarbageCollector/malloc_utils.c
+
+LIBFT_SRC = helpers/libft/ft_atoi.c helpers/libft/ft_bzero.c helpers/libft/ft_calloc.c \
+			helpers/libft/ft_isalnum.c helpers/libft/ft_isalpha.c helpers/libft/ft_isascii.c \
+			helpers/libft/ft_isdigit.c helpers/libft/ft_isprint.c helpers/libft/ft_itoa.c \
+			helpers/libft/ft_memchr.c helpers/libft/ft_memcmp.c helpers/libft/ft_memcpy.c \
+			helpers/libft/ft_memmove.c helpers/libft/ft_memset.c helpers/libft/ft_putchar_fd.c \
+			helpers/libft/ft_putendl_fd.c helpers/libft/ft_putnbr_fd.c helpers/libft/ft_putstr_fd.c \
+			helpers/libft/ft_split.c helpers/libft/ft_strchr.c helpers/libft/ft_strdup.c \
+			helpers/libft/ft_striteri.c helpers/libft/ft_strjoin.c helpers/libft/ft_strlcat.c \
+			helpers/libft/ft_strlcpy.c helpers/libft/ft_strlen.c helpers/libft/ft_strmapi.c \
+			helpers/libft/ft_strncmp.c helpers/libft/ft_strnstr.c helpers/libft/ft_strrchr.c \
+			helpers/libft/ft_strtrim.c helpers/libft/ft_substr.c helpers/libft/ft_tolower.c \
+			helpers/libft/ft_toupper.c
+
+ALL_SRC = $(SRC) $(PARSING_SRC) $(GNL_SRC) $(GC_SRC) $(LIBFT_SRC)
+
+OBJ = $(ALL_SRC:.c=.o)
 
 all: $(NAME)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
-
 
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) $(MLX) -o $(NAME)

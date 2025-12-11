@@ -5,7 +5,7 @@ void    init_player(t_mlx *mymlx)
     mymlx->player.x = WIDTH / 2;
     mymlx->player.y = HEIGHT / 2;
     mymlx->player.dir = 0;
-}
+}// had function khass had values li mhard codiying tbedlihom b spawn_x o spwn_y from t_data struct
 
 void update_player_movement(t_mlx *mymlx)
 {

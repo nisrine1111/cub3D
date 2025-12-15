@@ -2,9 +2,9 @@
 
 void draw_minimap(t_mlx *m)
 {
-    for (int y = 0; y < MAP_H; y++)
+    for (int y = 0; y < m->map_height; y++)
     {
-        for (int x = 0; x < MAP_W; x++)
+        for (int x = 0; x < m->map_width; x++)
         {
             int color = (m->map[y][x] == 1 ? 0x222222 : 0xAAAAAA);
             int sx = x * TILE * MMAP_SCALE;
@@ -32,7 +32,7 @@ void draw_minimap_rays(t_mlx *m)
     int px = m->player.x * MMAP_SCALE;
     int py = m->player.y * MMAP_SCALE;
 
-    for (int col = 0; col < NUM_RAYS; col++)
+    for (int col = 0; col < m->num_rays; col++)
     {
         int rx = m->all_rays.rays[col].hit_x * MMAP_SCALE;
         int ry = m->all_rays.rays[col].hit_y * MMAP_SCALE;

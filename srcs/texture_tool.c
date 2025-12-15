@@ -39,11 +39,11 @@ t_tex *select_texture(t_mlx *m, t_ray *ray)
 void draw_textured_wall(t_mlx *m, int col, t_ray *ray)
 {
     double  dist = ray->distance * cos(ray->ray_angle - m->player.dir);
-    double  wall_h = (TILE / dist) * (WIDTH / 2) / tan(FOV / 2);
+    double  wall_h = (TILE / dist) * (m->w_width / 2) / tan(FOV / 2);
     int     y;
 
-    int start = HEIGHT / 2 - wall_h / 2;
-    int end = HEIGHT / 2 + wall_h / 2;
+    int start = m->w_height / 2 - wall_h / 2;
+    int end = m->w_height / 2 + wall_h / 2;
 
     t_tex *tex = select_texture(m, ray);
 

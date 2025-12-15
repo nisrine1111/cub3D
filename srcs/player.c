@@ -1,11 +1,20 @@
 #include "../includes/cub3d.h"
 
-void    init_player(t_mlx *mymlx)
+void init_player(t_mlx *mlx, t_data *game)
 {
-    mymlx->player.x = WIDTH / 2;
-    mymlx->player.y = HEIGHT / 2;
-    mymlx->player.dir = 0;
-}// had function khass had values li mhard codiying tbedlihom b spawn_x o spwn_y from t_data struct
+    mlx->player.x = game->spawn_x * TILE;
+    mlx->player.y = game->spawn_y * TILE;
+
+    char *c = game->spawn_dir;
+    if (*c == 'N')
+        mlx->player.dir = M_PI * 1.5;
+    else if (*c == 'S')
+        mlx->player.dir = M_PI / 2;
+    else if (*c == 'W')
+        mlx->player.dir = M_PI;
+    else if (*c == 'E')
+        mlx->player.dir = 0;
+}
 
 void update_player_movement(t_mlx *mymlx)
 {

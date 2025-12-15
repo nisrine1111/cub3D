@@ -26,19 +26,19 @@ void draw_sprite(t_mlx *m, t_sprite *sp)
     if (fabs(angle) > FOV / 2)
         return;
 
-    double size = (TILE / dist) * (WIDTH / 2) / tan(FOV / 2);
+    double size = (TILE / dist) * (m->w_width / 2) / tan(FOV / 2);
 
-    int sprite_screen_x = (WIDTH / 2) * (1 + tan(angle) / tan(FOV / 2));
+    int sprite_screen_x = (m->w_width / 2) * (1 + tan(angle) / tan(FOV / 2));
 
-    int draw_start_y = HEIGHT / 2 - size / 2;
-    int draw_end_y   = HEIGHT / 2 + size / 2;
+    int draw_start_y = m->w_height / 2 - size / 2;
+    int draw_end_y   = m->w_height / 2 + size / 2;
 
     t_tex *tex = &sp->frames[sp->frame];
 
     for (int x = 0; x < size; x++)
     {
         int screen_x = sprite_screen_x - size / 2 + x;
-        if (screen_x < 0 || screen_x >= WIDTH)
+        if (screen_x < 0 || screen_x >= m->w_width)
             continue;
 
         double tex_x = (double)x / size * tex->width;
@@ -48,7 +48,7 @@ void draw_sprite(t_mlx *m, t_sprite *sp)
 
         for (int y = draw_start_y; y < draw_end_y; y++)
         {
-            if (y < 0 || y >= HEIGHT)
+            if (y < 0 || y >= m->w_height)
                 continue;
 
             double tex_y = (double)(y - draw_start_y) / size * tex->height;

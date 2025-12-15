@@ -31,7 +31,7 @@ double get_horizontal_hit(t_mlx *m, t_ray *ray)
     double x = x_inter;
     double y = y_inter + (facing_up ? -0.0001 : 0);
 
-    while (x >= 0 && x < MAP_W * TILE && y >= 0 && y < MAP_H * TILE)
+    while (x >= 0 && x < m->map_width * TILE && y >= 0 && y < m->map_height * TILE)
     {
         int mx = (int)(x / TILE);
         int my = (int)(y / TILE);
@@ -78,7 +78,7 @@ double get_vertical_hit(t_mlx *m, t_ray *ray)
     double x = x_inter + (facing_left ? -0.0001 : 0);
     double y = y_inter;
 
-    while (x >= 0 && x < MAP_W * TILE && y >= 0 && y < MAP_H * TILE)
+    while (x >= 0 && x < m->map_width * TILE && y >= 0 && y < m->map_height * TILE)
     {
         int mx = (int)(x / TILE);
         int my = (int)(y / TILE);

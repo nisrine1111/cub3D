@@ -9,15 +9,10 @@
 # include <math.h>
 
 # define TILE 128
-# define MAP_W 8
-# define MAP_H 8
-# define WIDTH (MAP_W * TILE)
-# define HEIGHT (MAP_H * TILE)
 # define FOV (M_PI / 3)
 # define MOVE_SPEED 5
 # define ROT_SPEED 0.1
 # define PLAYER_RADIUS 5
-# define NUM_RAYS WIDTH
 # define TEX_W 128
 # define TEX_H 128
 # define MMAP_SCALE 0.2
@@ -68,7 +63,7 @@ typedef struct s_ray
 
 typedef struct s_rays
 {
-    t_ray   rays[NUM_RAYS];
+    t_ray   *rays;
 }   t_rays;
 
 typedef struct s_tex
@@ -98,7 +93,12 @@ typedef struct s_mlx{
     void        *win;
     void        *img;
     void        *addr;
-    int         map[MAP_H][MAP_W];
+    int         **map;
+    int         map_width;
+    int         map_height;
+    int         num_rays;
+    int         w_width;
+    int         w_height;
     int         bits_per_pixel;
     int         line_lenght;
     int         endian;
@@ -117,13 +117,16 @@ typedef struct s_mlx{
     int         last_mouse_x;
     int         mouse_initialized;
     double      mouse_sensitivity;
+    int         move_forward;
+    int         move_backward;
 }   t_mlx;
 
 
 void    mymlx_pixel_put(t_mlx *mymlx, int x, int y, int color);
-void    init_map(t_mlx *mymlx);
-void    init_player(t_mlx *mymlx);
-int     handle_key(int keycode, t_mlx *mymlx);
+void    init_map(t_mlx *mymlx, t_data *game);
+void    init_player(t_mlx *mymlx, t_data *game);
+int     key_press(int keycode, t_mlx *mymlx);
+int     key_release(int key, t_mlx *m);
 int     close_window(t_mlx *mymlx);
 void    update_player_movement(t_mlx *mymlx);
 int     is_wall(t_mlx *m, float x, float y);
@@ -133,7 +136,7 @@ void    cast_rays(t_mlx *mymlx);
 double  normalize_angle(double angle);
 double  get_horizontal_hit(t_mlx *m, t_ray *ray);
 double  get_vertical_hit(t_mlx *m, t_ray *ray);
-int    render_frame(t_mlx *m);
+int     render_frame(t_mlx *m);
 void    draw_textured_wall(t_mlx *m, int col, t_ray *ray);
 void    render_3d(t_mlx *m);
 void    load_texture(t_mlx *m, t_tex *tex, char *path);

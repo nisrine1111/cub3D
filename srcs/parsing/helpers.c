@@ -32,6 +32,7 @@ void	init_data(t_data *game)
 	game->grid_height = 0;
 	game->spawn_x = -1;
 	game->spawn_y = -1;
+	game->spawn_dir = NULL;
 	game->wall_textures.north_path = NULL;
 	game->wall_textures.south_path = NULL;
 	game->wall_textures.west_path = NULL;

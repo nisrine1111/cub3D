@@ -5,7 +5,7 @@ int is_wall(t_mlx *m, float x, float y)
     int map_x = (int)(x / TILE);
     int map_y = (int)(y / TILE);
 
-    if (map_x < 0 || map_x >= MAP_W || map_y < 0 || map_y >= MAP_H)
+    if (map_x < 0 || map_x >= m->map_width || map_y < 0 || map_y >= m->map_height)
         return (1);
 
     int tile = m->map[map_y][map_x];
@@ -30,7 +30,7 @@ int can_move(t_mlx *m, float nx, float ny)
     return 1;
 }
 
-int handle_key(int keycode, t_mlx *mymlx)
+int key_press(int keycode, t_mlx *mymlx)
 {
     mymlx->player.turn_dir = 0;
     mymlx->player.move_dir = 0;
@@ -59,7 +59,17 @@ int handle_key(int keycode, t_mlx *mymlx)
         close_window(mymlx);// kant exit(0) dert close_window(mymlx) 3la wed cleanup
 
     update_player_movement(mymlx);
-    render_frame(mymlx);
+    return 0;
+}
+
+int key_release(int key, t_mlx *m)
+{
+    if (key == KEY_W || key == KEY_S)
+        m->player.move_dir = 0;
+    if (key == KEY_A || key == KEY_D)
+        m->player.strafe_dir = 0;
+    if (key == KEY_LEFT || key == KEY_RIGHT)
+        m->player.turn_dir = 0;
     return 0;
 }
 
@@ -67,7 +77,7 @@ int mouse_move(int x, int y, t_mlx *m)
 {
     (void)y;
 
-    int center_x = WIDTH / 2;
+    int center_x = m->w_width / 2;
     int dx = x - center_x;
 
     if (dx == 0)

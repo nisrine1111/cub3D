@@ -14,6 +14,8 @@
 
 int	is_player(char c)
 {
+	// game->spawn_dir = c;
+	// printf("%s\n", game->spawn_dir);
 	return (c == 'N' || c == 'S' || c == 'E' || c == 'W');
 }
 

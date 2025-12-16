@@ -14,6 +14,8 @@ int is_wall(t_mlx *m, float x, float y)
         return 1;
     if (tile == 2)
         return 1;
+    if (tile == 4)
+        return 1;
     return 0;
 }
 
@@ -23,7 +25,7 @@ int can_move(t_mlx *m, float nx, float ny)
     float r = PLAYER_RADIUS;
 
     if (is_wall(m, nx + r, ny + r)) return 0;
-    if (is_wall(m, nx - r, ny + r)) return 0;
+    if (is_wall(m, nx - r, ny - r)) return 0;
     if (is_wall(m, nx + r, ny - r)) return 0;
     if (is_wall(m, nx - r, ny + r)) return 0;
 
@@ -56,8 +58,7 @@ int key_press(int keycode, t_mlx *mymlx)
 
     
     if (keycode == KEY_ESC)
-        close_window(mymlx);// kant exit(0) dert close_window(mymlx) 3la wed cleanup
-
+        close_window(mymlx);
     update_player_movement(mymlx);
     return 0;
 }
@@ -92,6 +93,6 @@ int mouse_move(int x, int y, t_mlx *m)
 int close_window(t_mlx *mymlx)
 {
     mlx_destroy_window(mymlx->mlx, mymlx->win);
-    gc_free_all(); // cleanup
+    gc_free_all();
     exit(0);
 }

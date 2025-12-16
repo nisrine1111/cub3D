@@ -30,12 +30,8 @@ void init_map(t_mlx *mlx, t_data *game)
                 mlx->map[y][x] = 0;
             else if (*c == '2')
                 mlx->map[y][x] = 2;
-            else if (*c == '3')
-                mlx->map[y][x] = 3;
             else if (*c == '4')
                 mlx->map[y][x] = 4;
-            else if (*c == '5')
-                mlx->map[y][x] = 5;
             else if (*c == '6')
                 mlx->map[y][x] = 6;
             else if (*c == 'N' || *c == 'S' || *c == 'E' || *c == 'W')

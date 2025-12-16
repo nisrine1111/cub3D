@@ -54,7 +54,7 @@ int main(int ac, char **av)
     
     mymlx.frame_counter = 0;
     mymlx.mouse_initialized = 0;
-    mymlx.mouse_sensitivity = 0.002;
+    mymlx.mouse_sensitivity = 0.0007;
 
     mlx_loop_hook(mymlx.mlx, render_frame, &mymlx);
     mlx_hook(mymlx.win, 2, 1L<<0, key_press, &mymlx);

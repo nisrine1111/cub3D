@@ -60,8 +60,6 @@ static int	valid_door(char **grid, size_t row, size_t col)
 			col));
 }
 
-// 2: horizental door -> walls should be on left, right
-// 4: verttical door -> walls should be on top, buttom
 void	check_doors(t_parser *parser, t_data *game, int p)
 {
 	char	**grid;

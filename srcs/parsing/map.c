@@ -53,20 +53,13 @@ void	validate_walls_and_borders(t_parser *parser, t_data *game)
 	{
 		c = -1;
 		while (g[r][++c])
-		{
-			if (is_player(g[r][c]) && ++p)
+			if ((is_player(g[r][c]) && ++p) || g[r][c] == '0')
 				if (r > 0 && r < game->grid_height - 1 && (g[r - 1][c] == ' '
-					|| g[r + 1][c] == ' ' || g[r][c + 1] == ' ' || g[r][c - 1] == ' '))
+					|| g[r + 1][c] == ' ' || g[r][c + 1] == ' ' || g[r][c
+						- 1] == ' '))
 					print_error_exit(game, "Error\nMap not closed\n");
-			if ((g[r][c] == '0') && r > 0 && r < game->grid_height - 1
-				&& (g[r - 1][c] == ' ' || g[r + 1][c] == ' '
-					|| g[r][c + 1] == ' ' || g[r][c - 1] == ' '))
-				print_error_exit(game, "Error\nMap not closed\n");
-		}
 	}
-	if (p != 1)
-		print_error_exit(game, "Error\nOne player required\n");
-	check_doors(parser, game, -1, -1);
+	check_doors(parser, game, p);
 }
 
 void	parse_entry(t_parser *parser, t_data *game)

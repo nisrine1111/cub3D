@@ -40,8 +40,8 @@ void	check_texture(t_parser *parser, t_data *game, char *direction)
 		print_error_exit(game, "Error\nInvalid texture direction\n");
 	if (*path)
 		print_error_exit(game, "Error\nDuplicate texture identifier\n");
-	if (count_array(parser->tokens) != 2
-		|| ft_strncmp(parser->tokens[0], direction, 2))
+	if (count_array(parser->tokens) != 2 || ft_strncmp(parser->tokens[0],
+			direction, 2))
 		print_error_exit(game, "Error\nInvalid texture format\n");
 	if (!file_exists(parser->tokens[1]))
 		print_error_exit(game, "Error\nTexture file not found\n");

@@ -27,7 +27,9 @@ GNL_SRC = helpers/get_next_line/get_next_line.c \
 		  helpers/get_next_line/get_next_line_utils.c
 
 GC_SRC = helpers/GarbageCollector/malloc.c \
-		 helpers/GarbageCollector/malloc_utils.c
+		 helpers/GarbageCollector/malloc_utils.c \
+		 helpers/GarbageCollector/gc_trim.c \
+		 helpers/GarbageCollector/gc_split.c
 
 LIBFT_SRC = helpers/libft/ft_atoi.c helpers/libft/ft_bzero.c helpers/libft/ft_calloc.c \
 			helpers/libft/ft_isalnum.c helpers/libft/ft_isalpha.c helpers/libft/ft_isascii.c \

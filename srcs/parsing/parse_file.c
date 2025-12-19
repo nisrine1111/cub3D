@@ -18,14 +18,16 @@ static void	check_extension(char *filepath, t_data *game)
 
 	len = ft_strlen(filepath);
 	if (len < 5 || ft_strncmp(&filepath[len - 4], ".cub", 4) != 0)
-		print_error_exit(game, "Error\nInvalid file extension\nExpected: .cub\n");
+		print_error_exit(game,
+			"Error\nInvalid file extension\nExpected: .cub\n");
 }
 
 static void	check_fd(t_parser *parser, char *filepath, t_data *game)
 {
 	parser->fd = open(filepath, O_RDONLY);
 	if (parser->fd == -1)
-		print_error_exit(game, "Error\nCannot open file\nCheck file path and permissions\n");
+		print_error_exit(game,
+			"Error\nCannot open file\nCheck file path and permissions\n");
 }
 
 static void	create_map(t_parser *parser, t_data *game)

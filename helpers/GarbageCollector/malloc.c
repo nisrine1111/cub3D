@@ -82,9 +82,3 @@ void	*ft_malloc(size_t size)
 {
 	return (gc_malloc(size));
 }
-
-void	ft_exit(int status)
-{
-	gc_free_all();
-	exit(status);
-}

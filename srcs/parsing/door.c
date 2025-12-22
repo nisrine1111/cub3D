@@ -75,7 +75,7 @@ void	check_doors(t_parser *parser, t_data *game, int p)
 		col = 0;
 		while (grid[row][col])
 		{
-			if (grid[row][col] == 'D')
+			if (grid[row][col] == '2' || grid[row][col] == '4')
 			{
 				if (!valid_door(grid, row, col))
 					print_error_exit(game, "Error\nInvalid door placement\n");

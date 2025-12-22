@@ -17,16 +17,7 @@ static int	is_horizontal_door(char **grid, size_t row, size_t col)
 	if (col == 0 || !grid[row][col + 1])
 		return (0);
 	if (grid[row][col - 1] == '1' && grid[row][col + 1] == '1')
-	{
-		if (row > 0 && grid[row - 1][col] && ft_strlen(grid[row - 1]) > col)
-			if (grid[row - 1][col] != '0' && !is_player(grid[row - 1][col]))
-				return (0);
-		if (grid[row + 1] && grid[row + 1][col] && ft_strlen(grid[row
-				+ 1]) > col)
-			if (grid[row + 1][col] != '0' && !is_player(grid[row + 1][col]))
-				return (0);
 		return (1);
-	}
 	return (0);
 }
 
@@ -42,22 +33,8 @@ static int	is_vertical_door(char **grid, size_t row, size_t col)
 	if (prev_len <= col || next_len <= col)
 		return (0);
 	if (grid[row - 1][col] == '1' && grid[row + 1][col] == '1')
-	{
-		if (col > 0 && grid[row][col - 1] != '0' && !is_player(grid[row][col
-				- 1]))
-			return (0);
-		if (grid[row][col + 1] && grid[row][col + 1] != '0'
-			&& !is_player(grid[row][col + 1]))
-			return (0);
 		return (1);
-	}
 	return (0);
-}
-
-static int	valid_door(char **grid, size_t row, size_t col)
-{
-	return (is_horizontal_door(grid, row, col) || is_vertical_door(grid, row,
-			col));
 }
 
 void	check_doors(t_parser *parser, t_data *game, int p)
@@ -75,11 +52,10 @@ void	check_doors(t_parser *parser, t_data *game, int p)
 		col = 0;
 		while (grid[row][col])
 		{
-			if (grid[row][col] == '2' || grid[row][col] == '4')
-			{
-				if (!valid_door(grid, row, col))
-					print_error_exit(game, "Error\nInvalid door placement\n");
-			}
+			if (grid[row][col] == '2' && !is_horizontal_door(grid, row, col))
+				print_error_exit(game, "Error\nInvalid door placement\n");
+			if (grid[row][col] == '4' && !is_vertical_door(grid, row, col))
+				print_error_exit(game, "Error\nInvalid door placement\n");
 			col++;
 		}
 		row++;

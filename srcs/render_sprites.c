@@ -1,14 +1,27 @@
 #include "../includes/cub3d.h"
-void sort_sprites(t_mlx *m)
+
+void	sort_sprites(t_mlx *m)
 {
-    for (int i = 0; i < m->sprite_count - 1; i++)
-        for (int j = i + 1; j < m->sprite_count; j++)
-            if (m->sprites[i].distance < m->sprites[j].distance)
-            {
-                t_sprite tmp = m->sprites[i];
-                m->sprites[i] = m->sprites[j];
-                m->sprites[j] = tmp;
-            }
+	int			i;
+	int			j;
+	t_sprite	tmp;
+
+	i = 0;
+	while (i < m->sprite_count - 1)
+	{
+		j = i + 1;
+		while (j < m->sprite_count)
+		{
+			if (m->sprites[i].distance < m->sprites[j].distance)
+			{
+				tmp = m->sprites[i];
+				m->sprites[i] = m->sprites[j];
+				m->sprites[j] = tmp;
+			}
+			j++;
+		}
+		i++;
+	}
 }
 
 void draw_sprite(t_mlx *m, t_sprite *sp)
@@ -62,15 +75,24 @@ void draw_sprite(t_mlx *m, t_sprite *sp)
 
 void render_sprites(t_mlx *m)
 {
-    for (int i = 0; i < m->sprite_count; i++)
+    int i;
+    int j;
+    double dx;
+    double dy;
+
+    i = 0;
+    j = 0;
+    while (i < m->sprite_count)
     {
-        double dx = m->sprites[i].x - m->player.x;
-        double dy = m->sprites[i].y - m->player.y;
+        dx = m->sprites[i].x - m->player.x;
+        dy = m->sprites[i].y - m->player.y;
         m->sprites[i].distance = sqrt(dx*dx + dy*dy);
+        i++;
     }
-
     sort_sprites(m);
-
-    for (int i = 0; i < m->sprite_count; i++)
-        draw_sprite(m, &m->sprites[i]);
+    while (j < m->sprite_count)
+    {
+       draw_sprite(m, &m->sprites[j]);
+        j++; 
+    }   
 }

@@ -86,6 +86,23 @@ typedef struct s_sprite
     t_tex   frames[8];
 }   t_sprite;
 
+typedef struct s_sprite_draw
+{
+	double	dist;
+	double	angle;
+	double	size;
+	int		screen_x;
+	int		start_y;
+	int		end_y;
+}	t_sprite_draw;
+
+typedef struct s_step
+{
+	double	x;
+	double	y;
+	double	x_step;
+	double	y_step;
+}	t_step;
 
 
 typedef struct s_mlx{
@@ -124,6 +141,10 @@ typedef struct s_mlx{
 
 void    mymlx_pixel_put(t_mlx *mymlx, int x, int y, int color);
 void    init_map(t_mlx *mymlx, t_data *game);
+void	init_map_size(t_mlx *mlx, t_data *game);
+void	allocate_map(t_mlx *mlx);
+void	fill_map(t_mlx *mlx, t_data *game);
+void	init_sprites(t_mlx *mlx);
 void    init_player(t_mlx *mymlx, t_data *game);
 int     key_press(int keycode, t_mlx *mymlx);
 int     key_release(int key, t_mlx *m);

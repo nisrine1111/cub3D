@@ -2,12 +2,13 @@
 
 void cast_single_ray(t_mlx *mymlx, t_ray *ray)
 {
+    double h_dist;
+    double v_dist;
+
     ray->hit_door = 0;
     ray->ray_angle = normalize_angle(ray->ray_angle);
-
-    double h_dist = get_horizontal_hit(mymlx, ray);
-    double v_dist = get_vertical_hit(mymlx, ray);
-
+    h_dist = get_horizontal_hit(mymlx, ray);
+    v_dist = get_vertical_hit(mymlx, ray);
     if (h_dist < v_dist)
     {
         ray->hit_x = ray->h_x;

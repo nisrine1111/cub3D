@@ -1,56 +1,105 @@
 #include "../includes/cub3d.h"
 
-void draw_minimap(t_mlx *m)
+static void	draw_minimap_tile(t_mlx *m, int x, int y)
 {
-    for (int y = 0; y < m->map_height; y++)
-    {
-        for (int x = 0; x < m->map_width; x++)
-        {
-            int color = (m->map[y][x] == 1 ? 0x222222 : 0xAAAAAA);
-            int sx = x * TILE * MMAP_SCALE;
-            int sy = y * TILE * MMAP_SCALE;
+	int	color, sx, sy, i, j;
 
-            for (int i = 0; i < TILE * MMAP_SCALE; i++)
-                for (int j = 0; j < TILE * MMAP_SCALE; j++)
-                    mymlx_pixel_put(m, sx + j, sy + i, color);
-        }
-    }
+	color = 0xAAAAAA;
+	if (m->map[y][x] == 1)
+		color = 0x222222;
+	sx = x * TILE * MMAP_SCALE;
+	sy = y * TILE * MMAP_SCALE;
+	i = 0;
+	while (i < TILE * MMAP_SCALE)
+	{
+		j = 0;
+		while (j < TILE * MMAP_SCALE)
+		{
+			mymlx_pixel_put(m, sx + j, sy + i, color);
+			j++;
+		}
+		i++;
+	}
 }
 
-void draw_minimap_player(t_mlx *m)
+void	draw_minimap(t_mlx *m)
 {
-    int px = m->player.x * MMAP_SCALE;
-    int py = m->player.y * MMAP_SCALE;
+	int	x;
+    int y;
 
-    for (int y = -3; y <= 3; y++)
-        for (int x = -3; x <= 3; x++)
-            mymlx_pixel_put(m, px + x, py + y, 0xFF0000);
+	y = 0;
+	while (y < m->map_height)
+	{
+		x = 0;
+		while (x < m->map_width)
+		{
+			draw_minimap_tile(m, x, y);
+			x++;
+		}
+		y++;
+	}
 }
 
-void draw_minimap_rays(t_mlx *m)
+void	draw_minimap_player(t_mlx *m)
 {
-    int px = m->player.x * MMAP_SCALE;
-    int py = m->player.y * MMAP_SCALE;
+	int	px;
+	int	py;
+	int	x;
+	int	y;
 
-    for (int col = 0; col < m->num_rays; col++)
-    {
-        int rx = m->all_rays.rays[col].hit_x * MMAP_SCALE;
-        int ry = m->all_rays.rays[col].hit_y * MMAP_SCALE;
+	px = m->player.x * MMAP_SCALE;
+	py = m->player.y * MMAP_SCALE;
+	y = -3;
+	while (y <= 3)
+	{
+		x = -3;
+		while (x <= 3)
+		{
+			mymlx_pixel_put(m, px + x, py + y, 0xFF0000);
+			x++;
+		}
+		y++;
+	}
+}
 
-        int dx = rx - px;
-        int dy = ry - py;
-        int steps = abs(dx) > abs(dy) ? abs(dx) : abs(dy);
-        float x_inc = dx / (float)steps;
-        float y_inc = dy / (float)steps;
+static void	draw_one_minimap_ray(t_mlx *m, int px, int py, int col)
+{
+	int		rx, ry, dx, dy, steps, i;
+	float	x_inc, y_inc, xx, yy;
 
-        float xx = px;
-        float yy = py;
+	rx = m->all_rays.rays[col].hit_x * MMAP_SCALE;
+	ry = m->all_rays.rays[col].hit_y * MMAP_SCALE;
+	dx = rx - px;
+	dy = ry - py;
+	steps = abs(dx);
+	if (abs(dy) > steps)
+		steps = abs(dy);
+	x_inc = dx / (float)steps;
+	y_inc = dy / (float)steps;
+	xx = px;
+	yy = py;
+	i = 0;
+	while (i < steps)
+	{
+		mymlx_pixel_put(m, xx, yy, 0x00FF00);
+		xx += x_inc;
+		yy += y_inc;
+        i++;
+	}
+}
 
-        for (int i = 0; i < steps; i++)
-        {
-            mymlx_pixel_put(m, xx, yy, 0x00FF00);
-            xx += x_inc;
-            yy += y_inc;
-        }
-    }
+void	draw_minimap_rays(t_mlx *m)
+{
+	int	px;
+	int	py;
+	int	col;
+
+	px = m->player.x * MMAP_SCALE;
+	py = m->player.y * MMAP_SCALE;
+	col = 0;
+	while (col < m->num_rays)
+	{
+		draw_one_minimap_ray(m, px, py, col);
+		col++;
+	}
 }

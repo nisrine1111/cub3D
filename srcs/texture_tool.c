@@ -15,11 +15,11 @@ void load_texture(t_mlx *m, t_tex *tex, char *path)
 
 t_tex *select_texture(t_mlx *m, t_ray *ray)
 {
-    double ang = ray->ray_angle;
+    double ang;
 
+    ang = ray->ray_angle;;
     if (ray->hit_door == 1)
         return (&m->door);
-   
     if (ray->hit_side == 1)
     {
         if (ang > M_PI_2 && ang < 3 * M_PI_2)

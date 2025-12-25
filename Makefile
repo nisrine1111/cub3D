@@ -19,6 +19,7 @@ SRC =  srcs/main.c  	 \
 PARSING_SRC = srcs/parsing/colors.c \
 			  srcs/parsing/door.c \
 			  srcs/parsing/map.c \
+			  srcs/parsing/map_validation.c \
 			  srcs/parsing/texture.c \
 			  srcs/parsing/helpers.c \
 			  srcs/parsing/parse_file.c

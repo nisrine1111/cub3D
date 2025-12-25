@@ -6,7 +6,7 @@
 /*   By: abouknan <abouknan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 20:31:04 by abouknan          #+#    #+#             */
-/*   Updated: 2025/12/11 03:52:49 by abouknan         ###   ########.fr       */
+/*   Updated: 2025/12/26 00:05:05 by abouknan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,20 +44,16 @@ void	validate_walls_and_borders(t_parser *parser, t_data *game)
 	if (!g || !g[0])
 		print_error_exit(game, "Error\nInvalid map grid\n");
 	r = -1;
-	while (g[0][++r])
-		if (g[0][r] != '1' && g[0][r] != ' ')
-			print_error_exit(game, "Error\nInvalid top border\n");
-	r = -1;
 	p = 0;
 	while (g[++r])
 	{
 		c = -1;
 		while (g[r][++c])
-			if ((is_player(g[r][c]) && ++p) || g[r][c] == '0')
-				if (r > 0 && r < game->grid_height - 1 && (g[r - 1][c] == ' '
-					|| g[r + 1][c] == ' ' || g[r][c + 1] == ' ' || g[r][c
-						- 1] == ' '))
-					print_error_exit(game, "Error\nMap not closed\n");
+		{
+			if (is_player(g[r][c]))
+				p++;
+			check_map_valid(g, game, r, c);
+		}
 	}
 	check_doors(parser, game, p);
 }

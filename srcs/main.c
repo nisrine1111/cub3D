@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nachabi- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/26 17:59:53 by nachabi-          #+#    #+#             */
+/*   Updated: 2025/12/26 17:59:55 by nachabi-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 #include "mlx.h"
 
@@ -7,7 +19,7 @@ void	mymlx_pixel_put(t_mlx *mymlx, int x, int y, int color)
 
 	if (x < 0 || x >= mymlx->w_width || y < 0 || y >= mymlx->w_height)
 		return ;
-	dest = mymlx->addr + (y * mymlx->line_lenght + x * (mymlx->bits_per_pixel
+	dest = mymlx->addr + (y * mymlx->line_lenght + x * (mymlx->bpp
 				/ 8));
 	*(unsigned int *)dest = color;
 }

@@ -1,9 +1,20 @@
-#include "../includes/cub3d.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minimap.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nachabi- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/26 15:30:38 by nachabi-          #+#    #+#             */
+/*   Updated: 2025/12/26 15:34:55 by nachabi-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../../includes/cub3d.h"
 
 static void	draw_minimap_tile(t_mlx *m, int x, int y)
 {
-	int	color, sx, sy, i, j;
-
+	int (color), (sx), (sy), (i), (j);
 	color = 0xAAAAAA;
 	if (m->map[y][x] == 1)
 		color = 0x222222;
@@ -25,7 +36,7 @@ static void	draw_minimap_tile(t_mlx *m, int x, int y)
 void	draw_minimap(t_mlx *m)
 {
 	int	x;
-    int y;
+	int	y;
 
 	y = 0;
 	while (y < m->map_height)
@@ -64,9 +75,8 @@ void	draw_minimap_player(t_mlx *m)
 
 static void	draw_one_minimap_ray(t_mlx *m, int px, int py, int col)
 {
-	int		rx, ry, dx, dy, steps, i;
-	float	x_inc, y_inc, xx, yy;
-
+	int (rx), (ry), (dx), (dy), (steps), (i);
+	float (x_inc), (y_inc), (xx), (yy);
 	rx = m->all_rays.rays[col].hit_x * MMAP_SCALE;
 	ry = m->all_rays.rays[col].hit_y * MMAP_SCALE;
 	dx = rx - px;
@@ -84,7 +94,7 @@ static void	draw_one_minimap_ray(t_mlx *m, int px, int py, int col)
 		mymlx_pixel_put(m, xx, yy, 0x00FF00);
 		xx += x_inc;
 		yy += y_inc;
-        i++;
+		i++;
 	}
 }
 

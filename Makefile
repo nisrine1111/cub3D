@@ -5,16 +5,19 @@ CFLAGS = -Wall -Wextra -Werror
 MLX = -lmlx -lX11 -lXext -lm
 
 SRC =  srcs/main.c  	 \
-	   srcs/map.c    	 \
-	   srcs/player.c 	 \
-	   srcs/mouvement.c  \
-	   srcs/raycasting.c \
-	   srcs/cast_single.c\
-	   srcs/cast_all.c	 \
-	   srcs/render.c     \
-	   srcs/texture_tool.c \
-	   srcs/minimap.c     \
-	   srcs/render_sprites.c
+	   srcs/map/map.c    	 \
+	   srcs/map/map_utils.c	 \
+	   srcs/map/player.c 	 \
+	   srcs/mouvement/mouvement.c  \
+	   srcs/mouvement/mouvement_utils.c \
+	   srcs/raycasting/raycast_hor.c \
+	   srcs/raycasting/raycast_ver.c \
+	   srcs/raycasting/cast_single.c\
+	   srcs/raycasting/cast_all.c	 \
+	   srcs/rendering/render.c     \
+	   srcs/rendering/texture_tool.c \
+	   srcs/map/minimap.c     \
+	   srcs/rendering/render_sprites.c
 
 PARSING_SRC = srcs/parsing/colors.c \
 			  srcs/parsing/door.c \

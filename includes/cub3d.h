@@ -116,7 +116,7 @@ typedef struct s_mlx{
     int         num_rays;
     int         w_width;
     int         w_height;
-    int         bits_per_pixel;
+    int         bpp;
     int         line_lenght;
     int         endian;
     int         floor_color;

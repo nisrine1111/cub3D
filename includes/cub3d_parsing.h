@@ -6,7 +6,7 @@
 /*   By: abouknan <abouknan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 13:04:26 by abouknan          #+#    #+#             */
-/*   Updated: 2025/12/11 04:54:17 by abouknan         ###   ########.fr       */
+/*   Updated: 2025/12/26 00:05:24 by abouknan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdbool.h>
 
 char				*get_next_line(int fd);
 
@@ -70,6 +71,11 @@ void				check_texture(t_parser *parser, t_data *game,
 
 void				validate_walls_and_borders(t_parser *parser, t_data *game);
 int					is_player(char c);
+
+bool				check_wall(t_data *data, int lne, int i, int j);
+bool				check_out(char **map, int i, int j);
+void				check_valid_character(char c, t_data *data);
+void				check_map_valid(char **map, t_data *data, int i, int j);
 
 void				check_doors(t_parser *parser, t_data *game, int p);
 

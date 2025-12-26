@@ -40,7 +40,7 @@ typedef struct s_data
 	int				grid_height;
 	double			spawn_x;
 	double			spawn_y;
-	char			*spawn_dir;
+	char			spawn_dir;
 	t_wall_textures	wall_textures;
 }					t_data;
 

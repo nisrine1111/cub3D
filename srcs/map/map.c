@@ -26,7 +26,7 @@ static int	get_tile_value(char c, t_data *game)
 		return (6);
 	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
 	{
-		game->spawn_dir = &c;
+		game->spawn_dir = c;
 		return (0);
 	}
 	return (1);

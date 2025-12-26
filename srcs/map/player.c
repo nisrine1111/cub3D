@@ -14,18 +14,18 @@
 
 void	init_player(t_mlx *mlx, t_data *game)
 {
-	char	*c;
+	char	c;
 
 	mlx->player.x = game->spawn_x * TILE + TILE / 2;
 	mlx->player.y = game->spawn_y * TILE + TILE / 2;
 	c = game->spawn_dir;
-	if (*c == 'N')
+	if (c == 'N')
 		mlx->player.dir = M_PI * 1.5;
-	else if (*c == 'S')
+	else if (c == 'S')
 		mlx->player.dir = M_PI / 2;
-	else if (*c == 'W')
+	else if (c == 'W')
 		mlx->player.dir = M_PI;
-	else if (*c == 'E')
+	else if (c == 'E')
 		mlx->player.dir = 0;
 }
 

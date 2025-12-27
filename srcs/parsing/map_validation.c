@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_validation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abouknan <abouknan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: macbookpro <macbookpro@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 00:10:00 by abouknan          #+#    #+#             */
-/*   Updated: 2025/12/26 00:05:05 by abouknan         ###   ########.fr       */
+/*   Updated: 2025/12/27 18:14:16 by macbookpro       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ bool	check_out(char **map, int i, int j)
 void	check_valid_character(char c, t_data *data)
 {
 	if (c != '0' && c != '1' && c != 'N' && c != 'S'
-		&& c != 'E' && c != 'W' && c != '2' && c != '4')
+		&& c != 'E' && c != 'W' && c != '2' && c != '4' && c != '6')
 	{
 		printf("Error\nInvalid character in map\n");
 		print_error_exit(data, NULL);

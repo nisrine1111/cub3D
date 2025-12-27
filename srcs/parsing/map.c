@@ -6,7 +6,7 @@
 /*   By: abouknan <abouknan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 20:31:04 by abouknan          #+#    #+#             */
-/*   Updated: 2025/12/26 00:05:05 by abouknan         ###   ########.fr       */
+/*   Updated: 2025/12/27 20:32:23 by abouknan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,20 +60,25 @@ void	validate_walls_and_borders(t_parser *parser, t_data *game)
 
 void	parse_entry(t_parser *parser, t_data *game)
 {
+	char	*line_ptr;
+
 	if (!parser->line)
 		print_error_exit(game, "Error\nInvalid configuration line\n");
-	parser->tokens = gc_split(parser->line, ' ');
-	if (!parser->tokens || count_array(parser->tokens) != 2)
-		print_error_exit(game, "Error\nInvalid config format\n");
-	if (!ft_strncmp(parser->tokens[0], "NO", 2)
-		|| !ft_strncmp(parser->tokens[0], "SO", 2)
-		|| !ft_strncmp(parser->tokens[0], "WE", 2)
-		|| !ft_strncmp(parser->tokens[0], "EA", 2))
+	line_ptr = parser->line;
+	while (*line_ptr && (*line_ptr == ' ' || *line_ptr == '\t'))
+		line_ptr++;
+	if (!ft_strncmp(line_ptr, "NO ", 3) || !ft_strncmp(line_ptr, "SO ", 3)
+		|| !ft_strncmp(line_ptr, "WE ", 3) || !ft_strncmp(line_ptr, "EA ", 3))
+	{
+		parser->tokens = gc_split(parser->line, ' ');
+		if (!parser->tokens || count_array(parser->tokens) != 2)
+			print_error_exit(game, "Error\nInvalid config format\n");
 		check_texture(parser, game, parser->tokens[0]);
-	else if (!ft_strncmp(parser->tokens[0], "F", 1))
-		check_floor(game, parser->tokens[1]);
-	else if (!ft_strncmp(parser->tokens[0], "C", 1))
-		check_ceiling(game, parser->tokens[1]);
+	}
+	else if (!ft_strncmp(line_ptr, "F ", 2))
+		check_floor(game, line_ptr);
+	else if (!ft_strncmp(line_ptr, "C ", 2))
+		check_ceiling(game, line_ptr);
 	else
 		print_error_exit(game, "Error\nUnknown identifier\n");
 }

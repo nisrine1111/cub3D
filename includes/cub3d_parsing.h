@@ -6,7 +6,7 @@
 /*   By: abouknan <abouknan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 13:04:26 by abouknan          #+#    #+#             */
-/*   Updated: 2025/12/26 00:05:24 by abouknan         ###   ########.fr       */
+/*   Updated: 2025/12/27 20:37:09 by abouknan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ typedef struct s_wall_textures
 typedef struct s_data
 {
 	char			**map;
-	int				floor_rgb[3];
-	int				ceiling_rgb[3];
+	int				floor_color;
+	int				ceiling_color;
 	int				grid_width;
 	int				grid_height;
 	double			spawn_x;
@@ -52,6 +52,13 @@ typedef struct s_parser
 	char			**tokens;
 	char			**map_lines;
 }					t_parser;
+
+typedef struct s_color
+{
+	int	r;
+	int	g;
+	int	b;
+}	t_color;
 
 void				init_data(t_data *state);
 void				init_parser(t_parser *parser);
@@ -76,6 +83,7 @@ bool				check_wall(t_data *data, int lne, int i, int j);
 bool				check_out(char **map, int i, int j);
 void				check_valid_character(char c, t_data *data);
 void				check_map_valid(char **map, t_data *data, int i, int j);
+char				*skip_spacess(char *line);
 
 void				check_doors(t_parser *parser, t_data *game, int p);
 

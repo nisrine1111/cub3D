@@ -6,7 +6,7 @@
 /*   By: abouknan <abouknan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 20:31:09 by abouknan          #+#    #+#             */
-/*   Updated: 2025/12/11 03:49:13 by abouknan         ###   ########.fr       */
+/*   Updated: 2025/12/27 20:10:02 by abouknan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,8 @@ void	print_error_exit(t_data *game, char *message)
 void	init_data(t_data *game)
 {
 	game->map = NULL;
-	game->floor_rgb[0] = -1;
-	game->floor_rgb[1] = -1;
-	game->floor_rgb[2] = -1;
-	game->ceiling_rgb[0] = -1;
-	game->ceiling_rgb[1] = -1;
-	game->ceiling_rgb[2] = -1;
+	game->floor_color = -1;
+	game->ceiling_color = -1;
 	game->grid_width = 0;
 	game->grid_height = 0;
 	game->spawn_x = -1;

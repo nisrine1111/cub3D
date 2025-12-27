@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_validation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: macbookpro <macbookpro@student.42.fr>      +#+  +:+       +#+        */
+/*   By: abouknan <abouknan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 00:10:00 by abouknan          #+#    #+#             */
-/*   Updated: 2025/12/27 18:14:16 by macbookpro       ###   ########.fr       */
+/*   Updated: 2025/12/27 20:10:29 by abouknan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,11 @@ void	check_map_valid(char **map, t_data *data, int i, int j)
 	}
 	if (map[i][j] != ' ')
 		check_valid_character(map[i][j], data);
+}
+
+char	*skip_spacess(char *line)
+{
+	while (line && (*line == ' ' || *line == '\t'))
+		line++;
+	return (line);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nachabi- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: abouknan <abouknan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 17:59:53 by nachabi-          #+#    #+#             */
-/*   Updated: 2025/12/26 17:59:55 by nachabi-         ###   ########.fr       */
+/*   Updated: 2025/12/27 20:10:02 by abouknan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,8 @@ static void	init_mlx_data(t_mlx *mymlx, t_data *game_data)
 	mymlx->mlx = mlx_init();
 	if (!mymlx->mlx)
 		return ;
-	mymlx->floor_color = (game_data->floor_rgb[0] << 16)
-		| (game_data->floor_rgb[1] << 8) | game_data->floor_rgb[2];
-	mymlx->ceiling_color = (game_data->ceiling_rgb[0] << 16)
-		| (game_data->ceiling_rgb[1] << 8) | game_data->ceiling_rgb[2];
+	mymlx->floor_color = game_data->floor_color;
+	mymlx->ceiling_color = game_data->ceiling_color;
 	mymlx->win = mlx_new_window(mymlx->mlx, mymlx->w_width,
 			mymlx->w_height, "Cub3D");
 }

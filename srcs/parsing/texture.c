@@ -6,7 +6,7 @@
 /*   By: abouknan <abouknan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 20:31:07 by abouknan          #+#    #+#             */
-/*   Updated: 2025/12/11 03:56:28 by abouknan         ###   ########.fr       */
+/*   Updated: 2025/12/31 02:09:54 by abouknan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,6 @@ void	check_texture(t_parser *parser, t_data *game, char *direction)
 		print_error_exit(game, "Error\nInvalid texture direction\n");
 	if (*path)
 		print_error_exit(game, "Error\nDuplicate texture identifier\n");
-	if (count_array(parser->tokens) != 2 || ft_strncmp(parser->tokens[0],
-			direction, 2))
-		print_error_exit(game, "Error\nInvalid texture format\n");
 	if (!file_exists(parser->tokens[1]))
 		print_error_exit(game, "Error\nTexture file not found\n");
 	*path = parser->tokens[1];

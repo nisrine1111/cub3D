@@ -6,7 +6,7 @@
 /*   By: abouknan <abouknan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 20:31:15 by abouknan          #+#    #+#             */
-/*   Updated: 2025/12/11 03:56:22 by abouknan         ###   ########.fr       */
+/*   Updated: 2025/12/31 02:41:16 by abouknan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ static void	create_map(t_parser *parser, t_data *game)
 	parser->map_lines = gc_split(parser->content, '\n');
 	if (!parser->map_lines)
 		print_error_exit(game, "Error\nFailed to parse map content\n");
-	clean_map_lines(parser->map_lines);
 }
 
 void	parse_map(t_data *game, char *filepath)

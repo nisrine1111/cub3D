@@ -6,7 +6,7 @@
 /*   By: abouknan <abouknan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 20:30:56 by abouknan          #+#    #+#             */
-/*   Updated: 2025/12/27 20:37:09 by abouknan         ###   ########.fr       */
+/*   Updated: 2025/12/31 05:38:53 by abouknan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,44 +38,30 @@ static char	*skip_frst_color(t_data *data, char *line, t_color *color)
 		line++;
 	line = skip_spacess(line);
 	if (!parse_color_textue(line))
-	{
-		printf("Error\nInvalid color format\n");
-		print_error_exit(data, "");
-	}
+		print_error_exit(data, "Error\nInvalid color format\n");
 	color->r = ft_atoi(line);
 	if (color->r < 0 || color->r > 255)
-	{
-		printf("Error\nInvalid color format\n");
-		print_error_exit(data, "");
-	}
+		print_error_exit(data, "Error\nInvalid color format\n");
 	return (line);
 }
 
 static int	parse_color_to_int(char *line, t_data *data)
 {
-	int		i;
 	t_color	color;
 
-	i = 0;
 	line = skip_frst_color(data, line, &color);
-	while (line[i] && line[i] != ',')
-		i++;
-	i++;
-	color.g = ft_atoi(line + i);
+	while (*line && *line != ',')
+		line++;
+	line++;
+	color.g = ft_atoi(line);
 	if (color.g < 0 || color.g > 255)
-	{
-		printf("Error\nInvalid color format\n");
-		print_error_exit(data, "");
-	}
-	while (line[i] && line[i] != ',')
-		i++;
-	i++;
-	color.b = ft_atoi(line + i);
+		print_error_exit(data, "Error\nInvalid color format\n");
+	while (*line && *line != ',')
+		line++;
+	line++;
+	color.b = ft_atoi(line);
 	if (color.b < 0 || color.b > 255)
-	{
-		printf("Error\nInvalid color format\n");
-		print_error_exit(data, "");
-	}
+		print_error_exit(data, "Error\nInvalid color format\n");
 	return (color.r << 16 | color.g << 8 | color.b);
 }
 

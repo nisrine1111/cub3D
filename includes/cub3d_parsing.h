@@ -6,7 +6,7 @@
 /*   By: abouknan <abouknan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/17 13:04:26 by abouknan          #+#    #+#             */
-/*   Updated: 2025/12/27 20:37:09 by abouknan         ###   ########.fr       */
+/*   Updated: 2025/12/31 02:41:08 by abouknan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ void				parse_entry(t_parser *parser, t_data *game);
 void				read_map(t_parser *parser, t_data *game);
 
 short				count_array(char **array);
-void				clean_map_lines(char **map_lines);
 
 void				check_floor(t_data *game, char *color_str);
 void				check_ceiling(t_data *game, char *color_str);

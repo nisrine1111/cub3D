@@ -6,7 +6,7 @@
 /*   By: abouknan <abouknan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/20 20:31:04 by abouknan          #+#    #+#             */
-/*   Updated: 2025/12/27 20:32:23 by abouknan         ###   ########.fr       */
+/*   Updated: 2025/12/31 02:41:00 by abouknan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,6 @@
 int	is_player(char c)
 {
 	return (c == 'N' || c == 'S' || c == 'E' || c == 'W');
-}
-
-void	clean_map_lines(char **lines)
-{
-	int	i;
-	int	len;
-
-	if (!lines)
-		return ;
-	i = -1;
-	while (lines[++i])
-	{
-		len = ft_strlen(lines[i]);
-		if (len > 0 && lines[i][len - 1] == '\n')
-			lines[i][len - 1] = '\0';
-	}
 }
 
 void	validate_walls_and_borders(t_parser *parser, t_data *game)

@@ -14,18 +14,11 @@
 
 static int	is_horizontal_door(char **grid, size_t row, size_t col)
 {
-	size_t	prev_len;
-	size_t	next_len;
-
-	if (col == 0 || !grid[row][col + 1])
+	if (!grid[row][col + 1])
 		return (0);
 	if (grid[row][col - 1] != '1' || grid[row][col + 1] != '1')
 		return (0);
-	if (row == 0 || !grid[row + 1])
-		return (0);
-	prev_len = ft_strlen(grid[row - 1]);
-	next_len = ft_strlen(grid[row + 1]);
-	if (prev_len <= col || next_len <= col)
+	if (ft_strlen(grid[row - 1]) <= col || ft_strlen(grid[row + 1]) <= col)
 		return (0);
 	if (grid[row - 1][col] == '1' && grid[row + 1][col] == '1')
 		return (0);
@@ -34,18 +27,11 @@ static int	is_horizontal_door(char **grid, size_t row, size_t col)
 
 static int	is_vertical_door(char **grid, size_t row, size_t col)
 {
-	size_t	prev_len;
-	size_t	next_len;
-
-	if (row == 0 || !grid[row + 1])
+	if (!grid[row + 1] || !grid[row][col + 1])
 		return (0);
-	prev_len = ft_strlen(grid[row - 1]);
-	next_len = ft_strlen(grid[row + 1]);
-	if (prev_len <= col || next_len <= col)
+	if (ft_strlen(grid[row - 1]) <= col || ft_strlen(grid[row + 1]) <= col)
 		return (0);
 	if (grid[row - 1][col] != '1' || grid[row + 1][col] != '1')
-		return (0);
-	if (col == 0 || !grid[row][col + 1])
 		return (0);
 	if (grid[row][col - 1] == '1' && grid[row][col + 1] == '1')
 		return (0);

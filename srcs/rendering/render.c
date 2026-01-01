@@ -41,15 +41,11 @@ static void	draw_floor_and_ceiling(t_mlx *m)
 	}
 }
 
-int	render_frame(t_mlx *m)
+static void	sprites_mvt(t_mlx *m)
 {
 	int	i;
 
 	i = 0;
-	m->img = mlx_new_image(m->mlx, m->w_width, m->w_height);
-	m->addr = mlx_get_data_addr(m->img, &m->bpp, &m->line_lenght, &m->endian);
-	draw_floor_and_ceiling(m);
-	cast_rays(m);
 	m->frame_counter++;
 	if (m->frame_counter % 10 == 0)
 	{
@@ -59,6 +55,15 @@ int	render_frame(t_mlx *m)
 			i++;
 		}
 	}
+}
+
+int	render_frame(t_mlx *m)
+{
+	m->img = mlx_new_image(m->mlx, m->w_width, m->w_height);
+	m->addr = mlx_get_data_addr(m->img, &m->bpp, &m->line_lenght, &m->endian);
+	draw_floor_and_ceiling(m);
+	cast_rays(m);
+	sprites_mvt(m);
 	render_3d(m);
 	render_sprites(m);
 	draw_minimap(m);
@@ -66,7 +71,8 @@ int	render_frame(t_mlx *m)
 	draw_minimap_player(m);
 	mlx_put_image_to_window(m->mlx, m->win, m->img, 0, 0);
 	mlx_destroy_image(m->mlx, m->img);
-	mlx_mouse_move(m->mlx, m->win, m->w_width / 2, m->w_height / 2);
+	if (m->mouse_enabled)
+		mlx_mouse_move(m->mlx, m->win, m->w_width / 2, m->w_height / 2);
 	return (0);
 }
 

@@ -38,7 +38,7 @@
 # define KEY_RIGHT 65363
 # define KEY_ESC 65307
 # define KEY_E 101
-# define KEY_X 120
+# define KEY_M 109
 
 typedef struct s_player
 {

@@ -6,7 +6,7 @@
 /*   By: nachabi- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/28 15:39:36 by nachabi-          #+#    #+#             */
-/*   Updated: 2025/12/28 16:21:38 by nachabi-         ###   ########.fr       */
+/*   Updated: 2026/01/01 15:38:44 by nachabi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@
 # define KEY_RIGHT 65363
 # define KEY_ESC 65307
 # define KEY_E 101
+# define KEY_X 120
 
 typedef struct s_player
 {
@@ -134,6 +135,7 @@ typedef struct s_mlx
 	int			mouse_initialized;
 	int			move_forward;
 	int			move_backward;
+	int			mouse_enabled;
 	double		mouse_sensitivity;
 	t_rays		all_rays;
 	t_tex		north;
@@ -177,4 +179,8 @@ double	normalize_angle(double angle);
 double	get_horizontal_hit(t_mlx *m, t_ray *ray);
 double	get_vertical_hit(t_mlx *m, t_ray *ray);
 t_tex	*select_texture(t_mlx *m, t_ray *ray);
+void	free_map(t_mlx *mlx);
+void	free_sprites(t_mlx *mlx);
+void	free_mlx(t_mlx *mlx);
+void	hundle_sprites(t_mlx *mlx);
 #endif

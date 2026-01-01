@@ -6,7 +6,7 @@
 /*   By: nachabi- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 15:18:24 by nachabi-          #+#    #+#             */
-/*   Updated: 2025/12/26 15:26:22 by nachabi-         ###   ########.fr       */
+/*   Updated: 2026/01/01 15:45:03 by nachabi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,7 @@ void	init_sprites(t_mlx *mlx)
 	int (x), (y), (k);
 	mlx->sprite_count = count_sprites(mlx);
 	mlx->sprites = malloc(sizeof(t_sprite) * mlx->sprite_count);
-	if (!mlx->sprites)
-		exit(1);
+	hundle_sprites(mlx);
 	k = 0;
 	y = 0;
 	while (y < mlx->map_height)

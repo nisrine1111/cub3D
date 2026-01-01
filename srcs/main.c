@@ -6,7 +6,7 @@
 /*   By: abouknan <abouknan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 17:59:53 by nachabi-          #+#    #+#             */
-/*   Updated: 2025/12/27 20:10:02 by abouknan         ###   ########.fr       */
+/*   Updated: 2026/01/01 15:43:03 by nachabi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,21 @@ static void	init_mlx_data(t_mlx *mymlx, t_data *game_data)
 		return ;
 	mymlx->mlx = mlx_init();
 	if (!mymlx->mlx)
+	{
+		free(mymlx->all_rays.rays);
 		return ;
+	}
 	mymlx->floor_color = game_data->floor_color;
 	mymlx->ceiling_color = game_data->ceiling_color;
 	mymlx->win = mlx_new_window(mymlx->mlx, mymlx->w_width,
 			mymlx->w_height, "Cub3D");
+	if (!mymlx->win)
+	{
+		free(mymlx->all_rays.rays);
+		mlx_destroy_display(mymlx->mlx);
+		free(mymlx->mlx);
+		return ;
+	}
 }
 
 static void	load_all_textures(t_mlx *mymlx, t_data *game_data)
@@ -69,12 +79,12 @@ int	main(int ac, char **av)
 	mymlx.frame_counter = 0;
 	mymlx.mouse_initialized = 0;
 	mymlx.mouse_sensitivity = 0.0007;
+	mymlx.mouse_enabled = 1;
 	mlx_loop_hook(mymlx.mlx, render_frame, &mymlx);
 	mlx_hook(mymlx.win, 2, 1L << 0, key_press, &mymlx);
 	mlx_hook(mymlx.win, 3, 1L << 1, key_release, &mymlx);
 	mlx_hook(mymlx.win, 6, 1L << 6, mouse_move, &mymlx);
 	mlx_hook(mymlx.win, 17, 0, close_window, &mymlx);
 	mlx_loop(mymlx.mlx);
-	gc_free_all();
 	return (0);
 }

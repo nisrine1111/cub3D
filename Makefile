@@ -5,6 +5,7 @@ CFLAGS = -Wall -Wextra -Werror
 MLX = -lmlx -lX11 -lXext -lm
 
 SRC =  srcs/main.c  	 \
+	   srcs/free_outils.c   \
 	   srcs/map/map.c    	 \
 	   srcs/map/map_utils.c	 \
 	   srcs/map/player.c 	 \

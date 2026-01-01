@@ -18,6 +18,9 @@ void	load_texture(t_mlx *m, t_tex *tex, char *path)
 			path, &tex->width, &tex->height);
 	if (!tex->img)
 	{
+		free_sprites(m);
+		free_map(m);
+		free_mlx(m);
 		printf("Error loading texture: %s\n", path);
 		exit(1);
 	}

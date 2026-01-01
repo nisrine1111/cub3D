@@ -6,7 +6,7 @@
 /*   By: nachabi- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 15:26:50 by nachabi-          #+#    #+#             */
-/*   Updated: 2025/12/26 15:26:53 by nachabi-         ###   ########.fr       */
+/*   Updated: 2026/01/01 15:50:38 by nachabi-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,29 @@ void	init_map_size(t_mlx *mlx, t_data *game)
 
 void	allocate_map(t_mlx *mlx)
 {
-	int	y;
-
+	int (i), (y);
 	y = 0;
 	mlx->map = malloc(sizeof(int *) * mlx->map_height);
 	if (!mlx->map)
+	{
+		free_mlx(mlx);
 		exit(1);
+	}
 	while (y < mlx->map_height)
 	{
 		mlx->map[y] = malloc(sizeof(int) * mlx->map_width);
 		if (!mlx->map[y])
+		{
+			i = 0;
+			while (i < y)
+			{
+				free(mlx->map[i]);
+				i++;
+			}
+			free(mlx->map);
+			free_mlx(mlx);
 			exit(1);
+		}
 		y++;
 	}
 }

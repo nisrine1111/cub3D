@@ -65,7 +65,7 @@ int	mouse_move(int x, int y, t_mlx *m)
 
 int	close_window(t_mlx *mymlx)
 {
-	mlx_destroy_window(mymlx->mlx, mymlx->win);
-	gc_free_all();
+	free_map(mymlx);
+	free_mlx(mymlx);
 	exit(0);
 }

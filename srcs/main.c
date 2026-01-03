@@ -77,7 +77,6 @@ int	main(int ac, char **av)
 	init_player(&mymlx, &game_data);
 	load_all_textures(&mymlx, &game_data);
 	mymlx.frame_counter = 0;
-	mymlx.mouse_initialized = 0;
 	mymlx.mouse_sensitivity = 0.0007;
 	mymlx.mouse_enabled = 1;
 	mlx_loop_hook(mymlx.mlx, render_frame, &mymlx);

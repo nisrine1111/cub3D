@@ -132,7 +132,6 @@ typedef struct s_mlx
 	int			sprite_count;
 	int			frame_counter;
 	int			last_mouse_x;
-	int			mouse_initialized;
 	int			move_forward;
 	int			move_backward;
 	int			mouse_enabled;

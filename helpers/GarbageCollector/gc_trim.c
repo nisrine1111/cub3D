@@ -6,7 +6,7 @@
 /*   By: abouknan <abouknan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 00:00:00 by abouknan          #+#    #+#             */
-/*   Updated: 2025/12/19 00:00:00 by abouknan         ###   ########.fr       */
+/*   Updated: 2026/01/05 20:27:09 by abouknan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	*gc_strtrim(char const *s1, char const *set)
 	while (end > start && is_in_set(s1[end - 1], set))
 		end--;
 	len = end - start;
-	result = (char *)gc_malloc(len + 1);
+	result = (char *)ft_malloc(len + 1);
 	if (!result)
 		return (NULL);
 	ft_memcpy(result, &s1[start], len);

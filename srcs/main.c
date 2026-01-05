@@ -6,7 +6,7 @@
 /*   By: abouknan <abouknan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 17:59:53 by nachabi-          #+#    #+#             */
-/*   Updated: 2026/01/01 15:43:03 by nachabi-         ###   ########.fr       */
+/*   Updated: 2026/01/05 20:50:29 by abouknan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,22 +29,18 @@ static void	init_mlx_data(t_mlx *mymlx, t_data *game_data)
 	mymlx->w_height = game_data->grid_height * TILE;
 	mymlx->w_width = game_data->grid_width * TILE;
 	mymlx->num_rays = mymlx->w_width;
-	mymlx->all_rays.rays = malloc(sizeof(t_ray) * mymlx->num_rays);
+	mymlx->all_rays.rays = gc_calloc(mymlx->num_rays, sizeof(t_ray));
 	if (!mymlx->all_rays.rays)
 		return ;
 	mymlx->mlx = mlx_init();
 	if (!mymlx->mlx)
-	{
-		free(mymlx->all_rays.rays);
 		return ;
-	}
 	mymlx->floor_color = game_data->floor_color;
 	mymlx->ceiling_color = game_data->ceiling_color;
 	mymlx->win = mlx_new_window(mymlx->mlx, mymlx->w_width,
 			mymlx->w_height, "Cub3D");
 	if (!mymlx->win)
 	{
-		free(mymlx->all_rays.rays);
 		mlx_destroy_display(mymlx->mlx);
 		free(mymlx->mlx);
 		return ;
@@ -68,6 +64,7 @@ int	main(int ac, char **av)
 
 	if (ac != 2)
 		return (printf("Error\nUsage: ./cub3D <map_file.cub>\n"), 1);
+	ft_bzero(&mymlx, sizeof(t_mlx));
 	init_data(&game_data);
 	parse_map(&game_data, av[1]);
 	init_mlx_data(&mymlx, &game_data);

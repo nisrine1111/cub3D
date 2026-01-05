@@ -6,7 +6,7 @@
 /*   By: abouknan <abouknan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 20:30:08 by abouknan          #+#    #+#             */
-/*   Updated: 2025/11/29 20:30:09 by abouknan         ###   ########.fr       */
+/*   Updated: 2026/01/05 20:27:20 by abouknan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	*gc_calloc(size_t count, size_t size)
 	if (count > (size_t)-1 / size)
 		return (NULL);
 	total_size = count * size;
-	ptr = gc_malloc(total_size);
+	ptr = ft_malloc(total_size);
 	if (!ptr)
 		return (NULL);
 	ft_bzero(ptr, total_size);
@@ -37,7 +37,7 @@ char	*gc_strdup(const char *s)
 	if (!s)
 		return (NULL);
 	len = ft_strlen(s);
-	dup = (char *)gc_malloc(len + 1);
+	dup = (char *)ft_malloc(len + 1);
 	if (!dup)
 		return (NULL);
 	ft_memcpy(dup, s, len);
@@ -59,7 +59,7 @@ char	*gc_strjoin(char const *s1, char const *s2)
 		return (gc_strdup(s1));
 	len1 = ft_strlen(s1);
 	len2 = ft_strlen(s2);
-	result = (char *)gc_malloc(len1 + len2 + 1);
+	result = (char *)ft_malloc(len1 + len2 + 1);
 	if (!result)
 		return (NULL);
 	ft_memcpy(result, s1, len1);

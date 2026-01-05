@@ -6,7 +6,7 @@
 /*   By: abouknan <abouknan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 00:00:00 by abouknan          #+#    #+#             */
-/*   Updated: 2025/12/19 00:00:00 by abouknan         ###   ########.fr       */
+/*   Updated: 2026/01/05 20:27:05 by abouknan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static char	*get_word(char const *s, char c, size_t *index)
 		len++;
 		(*index)++;
 	}
-	word = (char *)gc_malloc(len + 1);
+	word = (char *)ft_malloc(len + 1);
 	if (!word)
 		return (NULL);
 	ft_memcpy(word, &s[start], len);
@@ -61,7 +61,7 @@ char	**gc_split(char const *s, char c)
 	if (!s)
 		return (NULL);
 	word_count = count_words(s, c);
-	result = (char **)gc_malloc((word_count + 1) * sizeof(char *));
+	result = (char **)ft_malloc((word_count + 1) * sizeof(char *));
 	if (!result)
 		return (NULL);
 	i = 0;

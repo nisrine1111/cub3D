@@ -6,11 +6,18 @@
 /*   By: abouknan <abouknan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 20:30:11 by abouknan          #+#    #+#             */
-/*   Updated: 2025/11/29 20:30:12 by abouknan         ###   ########.fr       */
+/*   Updated: 2026/01/05 20:26:13 by abouknan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "malloc.h"
+
+static t_gc	**get_head(void)
+{
+	static t_gc	*head;
+
+	return (&head);
+}
 
 void	free_node_content(void *content)
 {
@@ -35,11 +42,11 @@ t_gc	*gc_new_node(void *ptr)
 	return (node);
 }
 
-void	*gc_malloc(size_t size)
+void	*ft_malloc(size_t size)
 {
-	static t_gc	*head;
 	t_gc		*new_node;
 	void		*ptr;
+	t_gc		**head;
 
 	ptr = malloc(size);
 	if (!ptr)
@@ -50,23 +57,25 @@ void	*gc_malloc(size_t size)
 		free(ptr);
 		return (NULL);
 	}
-	if (!head)
-		head = new_node;
+	head = get_head();
+	if (!*head)
+		*head = new_node;
 	else
 	{
-		new_node->next = head;
-		head = new_node;
+		new_node->next = *head;
+		*head = new_node;
 	}
 	return (ptr);
 }
 
 void	gc_free_all(void)
 {
-	static t_gc	*head;
 	t_gc		*current;
 	t_gc		*next;
+	t_gc		**head;
 
-	current = head;
+	head = get_head();
+	current = *head;
 	while (current)
 	{
 		next = current->next;
@@ -75,10 +84,5 @@ void	gc_free_all(void)
 		free(current);
 		current = next;
 	}
-	head = NULL;
-}
-
-void	*ft_malloc(size_t size)
-{
-	return (gc_malloc(size));
+	*head = NULL;
 }

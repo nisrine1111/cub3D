@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nachabi- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: abouknan <abouknan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 15:18:24 by nachabi-          #+#    #+#             */
-/*   Updated: 2026/01/01 15:45:03 by nachabi-         ###   ########.fr       */
+/*   Updated: 2026/01/05 20:59:26 by abouknan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,19 @@ static int	count_sprites(t_mlx *mlx)
 
 void	init_sprites(t_mlx *mlx)
 {
-	int (x), (y), (k);
+	int	x;
+	int	y;
+	int	k;
+
 	mlx->sprite_count = count_sprites(mlx);
-	mlx->sprites = malloc(sizeof(t_sprite) * mlx->sprite_count);
-	hundle_sprites(mlx);
+	if (mlx->sprite_count == 0)
+	{
+		mlx->sprites = NULL;
+		return ;
+	}
+	mlx->sprites = gc_calloc(mlx->sprite_count, sizeof(t_sprite));
+	if (!mlx->sprites)
+		cleanup_and_exit(mlx, 1);
 	k = 0;
 	y = 0;
 	while (y < mlx->map_height)

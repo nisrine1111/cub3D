@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouvement.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nachabi- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: abouknan <abouknan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 15:42:10 by nachabi-          #+#    #+#             */
-/*   Updated: 2025/12/26 15:53:10 by nachabi-         ###   ########.fr       */
+/*   Updated: 2026/01/05 20:35:29 by abouknan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ int	mouse_move(int x, int y, t_mlx *m)
 
 int	close_window(t_mlx *mymlx)
 {
-	free_map(mymlx);
-	free_mlx(mymlx);
-	exit(0);
+	cleanup_and_exit(mymlx, 0);
+	return (0);
 }

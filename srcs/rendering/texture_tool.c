@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_tool.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nachabi- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: abouknan <abouknan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 16:29:41 by nachabi-          #+#    #+#             */
-/*   Updated: 2025/12/26 16:39:57 by nachabi-         ###   ########.fr       */
+/*   Updated: 2026/01/05 20:35:29 by abouknan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,8 @@ void	load_texture(t_mlx *m, t_tex *tex, char *path)
 			path, &tex->width, &tex->height);
 	if (!tex->img)
 	{
-		free_sprites(m);
-		free_map(m);
-		free_mlx(m);
 		printf("Error loading texture: %s\n", path);
-		exit(1);
+		cleanup_and_exit(m, 1);
 	}
 	tex->addr = (int *)mlx_get_data_addr(tex->img,
 			&tex->bpp, &tex->line_len, &tex->endian);

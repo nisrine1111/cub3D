@@ -6,7 +6,7 @@
 /*   By: abouknan <abouknan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 20:30:13 by abouknan          #+#    #+#             */
-/*   Updated: 2025/11/29 20:30:14 by abouknan         ###   ########.fr       */
+/*   Updated: 2026/01/05 20:27:28 by abouknan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ typedef struct s_gc
 
 void			ft_exit(int status);
 void			*ft_malloc(size_t size);
-void			*gc_malloc(size_t size);
 void			gc_free_all(void);
 t_gc			*gc_new_node(void *ptr);
 void			free_node_content(void *content);

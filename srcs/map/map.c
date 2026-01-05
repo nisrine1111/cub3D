@@ -6,7 +6,7 @@
 /*   By: abouknan <abouknan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 15:18:24 by nachabi-          #+#    #+#             */
-/*   Updated: 2026/01/05 20:59:26 by abouknan         ###   ########.fr       */
+/*   Updated: 2026/01/05 22:50:21 by abouknan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,7 @@ void	init_sprites(t_mlx *mlx)
 
 	mlx->sprite_count = count_sprites(mlx);
 	if (mlx->sprite_count == 0)
-	{
-		mlx->sprites = NULL;
-		return ;
-	}
+		return mlx->sprites = NULL, (void)0;
 	mlx->sprites = gc_calloc(mlx->sprite_count, sizeof(t_sprite));
 	if (!mlx->sprites)
 		cleanup_and_exit(mlx, 1);

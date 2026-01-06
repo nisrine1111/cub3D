@@ -74,13 +74,10 @@ static int	count_sprites(t_mlx *mlx)
 
 void	init_sprites(t_mlx *mlx)
 {
-	int	x;
-	int	y;
-	int	k;
-
+	int (x), (y), (k);
 	mlx->sprite_count = count_sprites(mlx);
 	if (mlx->sprite_count == 0)
-		return mlx->sprites = NULL, (void)0;
+		return (mlx->sprites = NULL, (void)0);
 	mlx->sprites = gc_calloc(mlx->sprite_count, sizeof(t_sprite));
 	if (!mlx->sprites)
 		cleanup_and_exit(mlx, 1);
